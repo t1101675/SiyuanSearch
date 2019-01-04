@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import render_to_response
-import search
 import json
 import re
 import copy
@@ -31,12 +31,12 @@ def receiveInput(request):
     if not tempInputText:
         return render(reuqest, "mainView.html")
 
-    ansGen = AnsGenerator(input)
+    ansGen = AnsGenerator(tempInputText)
     type, results = ansGen.getAnsList()
     if type is "html":
         return render(request, results)
     if type is "normal":
-        return HttpResponseRedirect("https://www.baidu.com/s?wd=" + input)
+        return HttpResponseRedirect("https://www.baidu.com/s?wd=" + tempInputText)
     '''
     results:
     [

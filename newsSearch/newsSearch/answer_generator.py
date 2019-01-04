@@ -1,9 +1,8 @@
 class AnsGenerator:
-    self.input = ""
-    def __init__(input):
+    def __init__(self, input):
         self.input = input
 
-    def getAnsList():
+    def getAnsList(self):
         return "normal", None
 
 class NormalGenerator(AnsGenerator):

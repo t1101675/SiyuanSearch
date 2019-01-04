@@ -15,12 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from . import view
-from . import search
 
 urlpatterns = [
     url(r'^SiyuanSearch$', view.mainView),
     url(r'^searchInput\d+$', view.receiveInput),
     url(r'^newsBroswer\d+$', view.newsBroswer),
 ]
-
-search.init()
