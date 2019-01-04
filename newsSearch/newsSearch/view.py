@@ -8,6 +8,7 @@ import re
 import copy
 import jieba
 import time
+from answer_generator import AnsGenerator
 
 inPage = []
 matchList = []
@@ -30,7 +31,20 @@ def receiveInput(request):
     if not tempInputText:
         return render(reuqest, "mainView.html")
 
+    ansGen = AnsGenerator(input)
+    results = ansGen.getAnsList()
+    '''
+    results:
+    [
+        {
+            title: (str)
+            desription: 
 
+        }
+
+
+    ]
+    '''
     resultNum = len(results)
 
     for news in results:
