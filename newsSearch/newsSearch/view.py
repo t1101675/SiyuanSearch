@@ -32,52 +32,23 @@ def receiveInput(request):
         return render(reuqest, "mainView.html")
 
     ansGen = AnsGenerator(input)
-    results = ansGen.getAnsList()
+    type, results = ansGen.getAnsList()
+    if type is "html":
+        return render(request, results)
     '''
     results:
     [
         {
             title: (str)
-            desription: 
-
+            desription: {
+                passage:
+                static:
+            }
+            url:
         }
-
-
     ]
     '''
     resultNum = len(results)
-
-    for news in results:
-        if (inputList):
-            p = news['passage'].find(inputList[0])
-        else:
-            p = -1
-        if p >= 0:
-            if (p + 100 > len(news['passage'])):
-                news['passage'] = news['passage'][p: ]
-            else:
-                news['passage'] = news['passage'][p: p + 100]
-        else:
-            news['passage'] = news['passage'][0: 100]
-        news['passage'] += '...'
-        for input in inputList:
-            str = '<em>' + input + '</em>'
-            #mark passage
-            tempPassageL = news['passage'].split(input)
-            markedNews = ''
-            n = len(tempPassageL)
-            for i in range(0, n - 1):
-                markedNews += (tempPassageL[i] + str)
-                markedNews += tempPassageL[n - 1]
-                news['passage'] = markedNews
-            #mark title
-            tempTitleL = news['title'].split(input)
-            markedTitle = ''
-            n_t = len(tempTitleL)
-            for i in range(0, n_t - 1):
-                markedTitle += (tempTitleL[i] + str)
-                markedTitle += tempTitleL[n_t - 1]
-                news['title'] = markedTitle
 
     if resultNum % 10 == 0 and resultNum is not 0:
         n = resultNum / 10
@@ -135,4 +106,4 @@ def renderPage(request):
             startN = pageNum - 1 - 5
             endN = pageNum - 1 + 5
     limitInPage = inPage[startN : endN]
-    return render(request, 'showResult.html', {'results': matchList[pageNum - 1], 'number': resultNum, 'inPage': limitInPage, 'inputText': inputText, 'searchTime': searchTime})
+    return render(request, 'showResult.html', {'results': matchList[pageNum - 1], 'number': resultNum, 'inPage': limitInPage, 'inputText': inputText})
