@@ -35,6 +35,8 @@ def receiveInput(request):
     type, results = ansGen.getAnsList()
     if type is "html":
         return render(request, results)
+    if type is "normal":
+        return HttpResponseRedirect("https://www.baidu.com/s?wd=" + input)
     '''
     results:
     [

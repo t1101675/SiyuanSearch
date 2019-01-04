@@ -4,7 +4,7 @@ class AnsGenerator:
         self.input = input
 
     def getAnsList():
-        pass
+        return "normal", None
 
 class NormalGenerator(AnsGenerator):
     def __init__(input):
