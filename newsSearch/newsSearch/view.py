@@ -13,52 +13,23 @@ inPage = []
 matchList = []
 resultNum = 0
 inputText = ''
-searchTime = 0.0
 
 def mainView(request):
     return render(request, "mainView.html")
-
-def validTime(time):
-    reg = re.compile(r'([12]\d{3})[-]([0]?[1-9]|1[0-2])[-]([0]?[1-9]|[1-2][0-9]|3[01])')
-    if (reg.match(time)):
-        return time
-    else:
-        return None
 
 def receiveInput(request):
     global inPage
     global matchList
     global resultNum
     global inputText
-    global searchTime
 
     request.encoding = 'utf-8'
 
     tempInputText = request.GET.get('inputText')
-    startSearchTime = time.time()
 
-    print tempInputText
-    print "OK"
-    if tempInputText:
-        inputText = tempInputText
-        inputList = jieba.lcut_for_search(inputText, HMM=True)
+    if not tempInputText:
+        return render(reuqest, "mainView.html")
 
-        limit = request.GET.get('limit')
-        if limit == 'limit':
-            startTime = validTime(request.GET.get('startTime'))
-            endTime = validTime(request.GET.get('endTime'))
-            print startTime, endTime
-            results = copy.deepcopy(search.search(inputList, startTime, endTime))
-        else:
-            results = copy.deepcopy(search.search(inputList))
-    else:
-        print "OK"
-        results = copy.deepcopy(search.newsList)
-        inputText = ''
-        inputList = []
-
-    endSearchTime = time.time()
-    searchTime = round((endSearchTime - startSearchTime), 3)
 
     resultNum = len(results)
 

@@ -18,7 +18,7 @@ from . import view
 from . import search
 
 urlpatterns = [
-    url(r'^GGSearch$', view.mainView),
+    url(r'^SiyuanSearch$', view.mainView),
     url(r'^searchInput\d+$', view.receiveInput),
     url(r'^newsBroswer\d+$', view.newsBroswer),
 ]
