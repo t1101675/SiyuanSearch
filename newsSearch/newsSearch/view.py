@@ -66,6 +66,12 @@ def receiveInput(request):
 
     return renderPage(request)
 
+def image(request):
+    return render(request, "image.html")
+
+def baike(request):
+    return render(request, "baike.html")
+
 def newsBroswer(request):
     print request.path
     reg = re.compile(r'\d+')

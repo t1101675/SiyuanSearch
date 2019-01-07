@@ -22,6 +22,8 @@ from django.conf import settings
 from django.conf.urls.static import serve
 urlpatterns = [
     url(r'^SiyuanSearch$', view.mainView),
+    url(r'^image$', view.image),
+    url(r'^baike$', view.baike),
     url(r'^searchInput\d+$', view.receiveInput),
     url(r'^newsBroswer\d+$', view.newsBroswer),
     url(r'^static/(?P<path>.*)$', serve, {'document_root':settings.STATIC_ROOT}),
