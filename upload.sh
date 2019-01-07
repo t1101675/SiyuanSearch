@@ -1,0 +1,1 @@
+rsync -r ./* $DO:~/SiyuanSearch/
