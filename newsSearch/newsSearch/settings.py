@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8!&v7t(g!p(c6i+sx)e5lc0h9c=h73-(6#9kpk$p7y!#ess=eo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -118,15 +118,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    BASE_DIR,'static',
-)
 #STATICFILES_DIRS = (
-#    ('css',os.path.join(STATIC_ROOT,'css').replace('\\','/') ),
-#    ('js',os.path.join(STATIC_ROOT,'js').replace('\\','/') ),
-#    ('images',os.path.join(STATIC_ROOT,'images').replace('\\','/') ),
-#    ('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/') ),
+#    BASE_DIR,'static',
 #)
+#STATIC_ROOT = os.path.join(os.path.dirname(__file__),'static')
+STATIC_ROOT=(os.path.join(BASE_DIR,'static'))
+
+STATICFILES_DIRS = (
+    ('css',os.path.join(STATIC_ROOT,'css').replace('\\','/') ),
+    ('js',os.path.join(STATIC_ROOT,'js').replace('\\','/') ),
+    ('images',os.path.join(STATIC_ROOT,'images').replace('\\','/') ),
+    ('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/') ),
+)
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
