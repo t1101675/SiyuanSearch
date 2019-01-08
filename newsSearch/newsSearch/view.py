@@ -75,6 +75,9 @@ def baike(request):
 def wish(request):
     return render(request, "wish.html")
 
+def birthday(request):
+    return render(request, "birthday.html")
+
 def newsBroswer(request):
     print request.path
     reg = re.compile(r'\d+')
