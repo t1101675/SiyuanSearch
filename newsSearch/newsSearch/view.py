@@ -72,6 +72,9 @@ def image(request):
 def baike(request):
     return render(request, "baike.html")
 
+def wish(request):
+    return render(request, "wish.html")
+
 def newsBroswer(request):
     print request.path
     reg = re.compile(r'\d+')
